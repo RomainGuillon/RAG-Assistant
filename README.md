@@ -1,67 +1,78 @@
-# RAG multi-fichiers (PDF, Word, PowerPoint)
+# RAG Assistant
 
-Version modulaire du notebook `RAG_multi.ipynb`.
+Application de questions/réponses sur documents (PDF, Word, PowerPoint) avec interface Streamlit.
+
+## Fonctionnalités
+
+- Chat Q&A basé sur tes documents
+- Upload de fichiers depuis l'interface (PDF, DOCX, PPTX)
+- Suppression de documents indexés
+- Historique de conversation persisté (SQLite)
+- Streaming des réponses
+- Tracing Langfuse optionnel
 
 ## Structure
 
-| Fichier               | Rôle                                                                |
-| --------------------- | -------------------------------------------------------------------- |
-| `config.py`            | Charge la configuration depuis `.env` (clé API, modèle, chemins, paramètres) |
-| `logging_config.py`    | Configure le logging (console + fichier `rag.log`)                  |
-| `document_loader.py`   | Charge les PDF/DOCX/PPTX et détecte les fichiers déjà indexés        |
-| `indexing.py`          | Découpe les documents en chunks et les ajoute au vector store        |
-| `vector_store.py`      | Initialise les embeddings et le vector store Chroma                  |
-| `rag_chain.py`         | Prompt, LLM, retriever et mémoire conversationnelle (classe `RagChain`) |
-| `tracing.py`           | Initialise le tracing Langfuse (optionnel)                          |
-| `main.py`              | Point d'entrée : indexation puis boucle de questions interactive     |
+```
+rag_project/
+├── .streamlit/
+│   └── config.toml          # Thème Streamlit
+├── data/                    # Documents source + base ChromaDB (gitignored)
+├── logs/                    # Fichiers de log (gitignored)
+├── rag/                     # Package backend RAG
+│   ├── config.py            # Configuration via variables d'environnement
+│   ├── document_loader.py   # Chargement PDF/DOCX/PPTX
+│   ├── history_store.py     # Persistance de l'historique (SQLite)
+│   ├── indexing.py          # Découpage en chunks et indexation
+│   ├── logging_config.py    # Configuration du logging
+│   ├── rag_chain.py         # Chaîne RAG (retriever, prompt, LLM, mémoire)
+│   ├── tracing.py           # Tracing Langfuse (optionnel)
+│   └── vector_store.py      # Embeddings HuggingFace + ChromaDB
+├── app.py                   # Interface Streamlit
+├── main.py                  # Point d'entrée CLI
+└── requirements.txt
+```
 
 ## Installation
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env
 ```
 
-Puis ouvre `.env` et renseigne ta clé `OPENAI_API_KEY` (et les autres variables
-si besoin — chemins, taille des chunks, etc. ont des valeurs par défaut sinon).
+## Configuration
 
-**Le fichier `.env` ne doit jamais être commité** — il est déjà listé dans
-`.gitignore`. Seul `.env.example` (sans vraies valeurs) est versionné, comme
-modèle pour quiconque clone le repo.
+### En local
 
-## Utilisation
+Crée `.streamlit/secrets.toml` (jamais commité) :
+
+```toml
+OPENAI_API_KEY = "sk-..."
+OPENAI_MODEL = "gpt-4o-mini"
+
+# Optionnel — Langfuse
+# LANGFUSE_PUBLIC_KEY = "pk-lf-..."
+# LANGFUSE_SECRET_KEY = "sk-lf-..."
+# LANGFUSE_HOST = "https://cloud.langfuse.com"
+```
+
+### Sur Streamlit Cloud
+
+Renseigne les mêmes clés dans **Settings → Secrets** de ton app.
+
+## Lancement
 
 ```bash
+# Interface Streamlit
+streamlit run app.py
+
+# CLI (terminal)
 python main.py
 ```
 
-Au lancement :
-1. Le vector store Chroma est ouvert (ou créé) depuis `CHROMA_DIR`.
-2. Les fichiers du répertoire `DOC_DIR` non encore indexés sont chargés, découpés et ajoutés.
-3. Une boucle de questions démarre dans le terminal :
-   - tape ta question puis Entrée
-   - `reset` efface la mémoire de conversation
-   - `quit` (ou `exit` / `q`) quitte le programme
+## Notes de déploiement
 
-Les messages de progression (chargement, indexation, erreurs) vont dans les logs
-(console + fichier `rag.log`), pas dans des `print()`. Seule la réponse finale à
-la question est affichée directement dans le terminal.
+Sur Streamlit Cloud, le filesystem est éphémère : les fichiers uploadés et la base ChromaDB sont perdus à chaque redémarrage. Il faut ré-uploader les documents après chaque redémarrage.
 
 ## Tracing Langfuse (optionnel)
 
-Pour activer le tracing, renseigne dans `.env` :
-
-```
-LANGFUSE_PUBLIC_KEY=pk-lf-...
-LANGFUSE_SECRET_KEY=sk-lf-...
-LANGFUSE_HOST=https://cloud.langfuse.com   # ou ton instance self-hosted
-```
-
-Si ces clés sont absentes, l'application fonctionne normalement et le tracing
-est simplement désactivé (message dans les logs, pas d'erreur).
-
-Quand il est actif, chaque appel à `RagChain.ask()` est tracé dans Langfuse en
-une seule trace incluant la récupération des documents (retriever), le prompt
-et l'appel au LLM — visible dans le dashboard Langfuse sous forme d'arbre
-d'exécution.
-
+Si `LANGFUSE_PUBLIC_KEY` et `LANGFUSE_SECRET_KEY` sont configurées, chaque appel RAG est tracé dans le dashboard Langfuse. Sans ces clés, l'application fonctionne normalement.
