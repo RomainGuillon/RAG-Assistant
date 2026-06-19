@@ -8,19 +8,42 @@ afin de pouvoir citer les sources dans les réponses de la chaîne RAG.
 import logging
 from pathlib import Path
 
-from langchain_community.document_loaders import (
-    Docx2txtLoader,
-    PyPDFLoader,
-    UnstructuredPowerPointLoader,
-)
+from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader
+from langchain_core.documents import Document
+from pptx import Presentation
 
 logger = logging.getLogger(__name__)
+
+
+def _load_pptx(filepath: Path) -> list:
+    """Charge un fichier PPTX via python-pptx (sans dépendance à unstructured/spaCy).
+
+    Extrait le texte slide par slide. Les slides vides sont ignorées.
+
+    Args:
+        filepath: Chemin vers le fichier .ppt/.pptx.
+
+    Returns:
+        Liste de Documents LangChain, un par slide non vide.
+    """
+    prs = Presentation(str(filepath))
+    docs = []
+    for slide in prs.slides:
+        texte = "\n".join(
+            shape.text.strip()
+            for shape in slide.shapes
+            if hasattr(shape, "text") and shape.text.strip()
+        )
+        if texte:
+            docs.append(Document(page_content=texte))
+    return docs
+
 
 LOADERS = {
     ".pdf": PyPDFLoader,
     ".docx": Docx2txtLoader,
-    ".ppt": UnstructuredPowerPointLoader,
-    ".pptx": UnstructuredPowerPointLoader,
+    ".ppt": _load_pptx,
+    ".pptx": _load_pptx,
 }
 
 
@@ -93,8 +116,12 @@ def load_file(fichier: Path) -> list:
         Liste de Documents LangChain, un par page (PDF) ou par slide (PPTX),
         chacun enrichi des métadonnées de source.
     """
-    loader_cls = LOADERS[fichier.suffix.lower()]
-    docs = loader_cls(str(fichier)).load()
+    loader = LOADERS[fichier.suffix.lower()]
+    # _load_pptx est une fonction directe ; les loaders LangChain sont des classes
+    if callable(loader) and not isinstance(loader, type):
+        docs = loader(fichier)
+    else:
+        docs = loader(str(fichier)).load()
 
     for i, doc in enumerate(docs, start=1):
         doc.metadata["fichier"] = fichier.name
