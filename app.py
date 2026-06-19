@@ -19,7 +19,6 @@ for _key, _value in st.secrets.items():
         os.environ.setdefault(_key, _value)
 
 from rag import config, document_loader, indexing, tracing, vector_store
-from rag.history_store import HistoryStore
 from rag.logging_config import setup_logging
 from rag.rag_chain import RagChain
 
@@ -55,13 +54,13 @@ def init_rag():
         search_kwargs={"k": config.RETRIEVER_K, "fetch_k": config.RETRIEVER_FETCH_K},
     )
     langfuse_handler = tracing.build_langfuse_handler()
-    history_store = HistoryStore(config.HISTORY_DB)
+    # Pas de persistance SQLite en mode Streamlit (zéro trace sur le serveur)
     rag_chain = RagChain(
         retriever,
         model=config.MODEL,
         api_key=config.API_KEY,
         callback_handler=langfuse_handler,
-        history_store=history_store,
+        history_store=None,
     )
     return rag_chain, vectordb
 
