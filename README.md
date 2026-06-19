@@ -4,22 +4,17 @@ Application de questions/réponses sur documents (PDF, Word, PowerPoint) avec in
 
 ---
 
-> ### ⚙️ Suppression de la purge automatique (timeout 5 min)
+> ### ⚙️ Comportement de la session
 >
-> Par défaut, si aucune interaction n'a eu lieu depuis 5 minutes, la session (documents + conversation) est vidée automatiquement au prochain chargement.
+> Chaque visite sur l'URL de base de l'app repart avec une session vierge (aucun document, conversation effacée). Un rafraîchissement de page (F5) conserve la session en cours.
 >
-> Pour désactiver ce comportement, supprimer dans `app.py` :
->
-> 1. La constante : `INACTIVITY_TIMEOUT = 5 * 60`
-> 2. Le bloc de vérification (4 lignes) :
->    ```python
->    if "last_active" in st.session_state:
->        if time.time() - st.session_state["last_active"] > INACTIVITY_TIMEOUT:
->            st.session_state.clear()
->            st.rerun()
->    st.session_state["last_active"] = time.time()
->    ```
-> 3. L'import en haut du fichier : `import time`
+> Pour désactiver ce comportement, supprimer dans `app.py` le bloc :
+> ```python
+> if "s" not in st.query_params:
+>     st.session_state.clear()
+>     st.query_params["s"] = "1"
+>     st.rerun()
+> ```
 
 ---
 

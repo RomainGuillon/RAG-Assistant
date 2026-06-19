@@ -7,7 +7,6 @@ Chaque session repart de zero : aucune trace conservee sur le serveur.
 import logging
 import os
 import tempfile
-import time
 from pathlib import Path
 
 import streamlit as st
@@ -89,17 +88,16 @@ def index_uploaded_file(uf, vectordb) -> int:
 
 
 # ---------------------------------------------------------------------------
-# Auto-clear apres inactivite
+# Detection nouvelle visite — repart propre si l'URL n'a pas de token de session
 # ---------------------------------------------------------------------------
+# Principe : a chaque nouvelle visite (URL sans parametre "s"), on vide la session
+# et on ajoute ?s=1 dans l'URL. Le refresh (F5) conserve ce parametre → session gardee.
+# Fermer l'onglet et revenir sur l'URL de base → pas de parametre → session videe.
 
-INACTIVITY_TIMEOUT = 5 * 60  # 5 minutes sans activite = nouvelle session propre
-
-if "last_active" in st.session_state:
-    if time.time() - st.session_state["last_active"] > INACTIVITY_TIMEOUT:
-        st.session_state.clear()
-        st.rerun()
-
-st.session_state["last_active"] = time.time()
+if "s" not in st.query_params:
+    st.session_state.clear()
+    st.query_params["s"] = "1"
+    st.rerun()
 
 # ---------------------------------------------------------------------------
 # Session state
