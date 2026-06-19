@@ -2,7 +2,7 @@
 Interface Streamlit pour l'application RAG.
 
 Les documents sont traites en memoire (aucune ecriture permanente sur disque).
-Chaque session repart de zero : aucune trace conservee sur le serveur.
+Utilisez le bouton "Vider tous les documents" pour effacer la session manuellement.
 """
 import logging
 import os
@@ -86,18 +86,6 @@ def index_uploaded_file(uf, vectordb) -> int:
     finally:
         tmp_path.unlink(missing_ok=True)  # suppression garantie
 
-
-# ---------------------------------------------------------------------------
-# Detection nouvelle visite — repart propre si l'URL n'a pas de token de session
-# ---------------------------------------------------------------------------
-# Principe : a chaque nouvelle visite (URL sans parametre "s"), on vide la session
-# et on ajoute ?s=1 dans l'URL. Le refresh (F5) conserve ce parametre → session gardee.
-# Fermer l'onglet et revenir sur l'URL de base → pas de parametre → session videe.
-
-if "s" not in st.query_params:
-    st.session_state.clear()
-    st.query_params["s"] = "1"
-    st.rerun()
 
 # ---------------------------------------------------------------------------
 # Session state

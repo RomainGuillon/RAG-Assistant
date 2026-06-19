@@ -2,28 +2,11 @@
 
 Application de questions/réponses sur documents (PDF, Word, PowerPoint) avec interface Streamlit.
 
----
-
-> ### ⚙️ Comportement de la session
->
-> Chaque visite sur l'URL de base de l'app repart avec une session vierge (aucun document, conversation effacée). Un rafraîchissement de page (F5) conserve la session en cours.
->
-> Pour désactiver ce comportement, supprimer dans `app.py` le bloc :
-> ```python
-> if "s" not in st.query_params:
->     st.session_state.clear()
->     st.query_params["s"] = "1"
->     st.rerun()
-> ```
-
----
-
 ## Fonctionnalités
 
 - Chat Q&A basé sur tes documents
 - Upload de fichiers depuis l'interface (PDF, DOCX, PPTX)
-- Suppression de documents indexés
-- Historique de conversation persisté (SQLite)
+- Suppression de documents indexés (par fichier ou tout vider d'un coup)
 - Streaming des réponses
 - Tracing Langfuse optionnel
 
@@ -84,10 +67,6 @@ streamlit run app.py
 # CLI (terminal)
 python main.py
 ```
-
-## Notes de déploiement
-
-Sur Streamlit Cloud, le filesystem est éphémère : les fichiers uploadés et la base ChromaDB sont perdus à chaque redémarrage. Il faut ré-uploader les documents après chaque redémarrage.
 
 ## Tracing Langfuse (optionnel)
 
