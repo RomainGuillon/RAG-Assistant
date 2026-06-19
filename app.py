@@ -7,6 +7,7 @@ Chaque session repart de zero : aucune trace conservee sur le serveur.
 import logging
 import os
 import tempfile
+import time
 from pathlib import Path
 
 import streamlit as st
@@ -86,6 +87,19 @@ def index_uploaded_file(uf, vectordb) -> int:
     finally:
         tmp_path.unlink(missing_ok=True)  # suppression garantie
 
+
+# ---------------------------------------------------------------------------
+# Auto-clear apres inactivite
+# ---------------------------------------------------------------------------
+
+INACTIVITY_TIMEOUT = 5 * 60  # 5 minutes sans activite = nouvelle session propre
+
+if "last_active" in st.session_state:
+    if time.time() - st.session_state["last_active"] > INACTIVITY_TIMEOUT:
+        st.session_state.clear()
+        st.rerun()
+
+st.session_state["last_active"] = time.time()
 
 # ---------------------------------------------------------------------------
 # Session state
@@ -198,16 +212,4 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 if question := st.chat_input("Posez votre question..."):
-    st.session_state.messages.append({"role": "user", "content": question})
-    with st.chat_message("user"):
-        st.markdown(question)
-
-    with st.chat_message("assistant"):
-        try:
-            reponse = st.write_stream(st.session_state.rag_chain.stream(question))
-        except Exception as e:
-            reponse = f"Erreur lors de la generation : {e}"
-            st.markdown(reponse)
-            logger.exception("Erreur RAG stream")
-
-    st.session_state.messages.append({"role": "assistant", "content": reponse})
+    st.session_state.messages.append(
