@@ -194,10 +194,24 @@ with st.sidebar:
     st.divider()
 
     st.subheader("Conversation")
-    if st.button("🗑️ Reinitialiser", use_container_width=True):
+    if st.button("🗑️ Reinitialiser la conversation", use_container_width=True):
         st.session_state.rag_chain.reset()
         st.session_state.messages = []
         st.rerun()
+
+    if nb_fichiers > 0:
+        if st.button("🧹 Vider tous les documents", use_container_width=True, type="primary"):
+            with st.spinner("Suppression de tous les documents..."):
+                try:
+                    all_ids = st.session_state.vectordb.get()["ids"]
+                    if all_ids:
+                        st.session_state.vectordb.delete(ids=all_ids)
+                    st.session_state.rag_chain.reset()
+                    st.session_state.messages = []
+                except Exception as e:
+                    st.error(f"Erreur : {e}")
+                    logger.exception("Erreur suppression globale")
+            st.rerun()
 
 
 # ---------------------------------------------------------------------------
@@ -212,4 +226,16 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 if question := st.chat_input("Posez votre question..."):
-    st.session_state.messages.append(
+    st.session_state.messages.append({"role": "user", "content": question})
+    with st.chat_message("user"):
+        st.markdown(question)
+
+    with st.chat_message("assistant"):
+        try:
+            reponse = st.write_stream(st.session_state.rag_chain.stream(question))
+        except Exception as e:
+            reponse = f"Erreur lors de la generation : {e}"
+            st.markdown(reponse)
+            logger.exception("Erreur RAG stream")
+
+    st.session_state.messages.append({"role": "assistant", "content": reponse})
