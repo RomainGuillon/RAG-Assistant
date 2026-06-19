@@ -2,6 +2,27 @@
 
 Application de questions/réponses sur documents (PDF, Word, PowerPoint) avec interface Streamlit.
 
+---
+
+> ### ⚙️ Suppression de la purge automatique (timeout 5 min)
+>
+> Par défaut, si aucune interaction n'a eu lieu depuis 5 minutes, la session (documents + conversation) est vidée automatiquement au prochain chargement.
+>
+> Pour désactiver ce comportement, supprimer dans `app.py` :
+>
+> 1. La constante : `INACTIVITY_TIMEOUT = 5 * 60`
+> 2. Le bloc de vérification (4 lignes) :
+>    ```python
+>    if "last_active" in st.session_state:
+>        if time.time() - st.session_state["last_active"] > INACTIVITY_TIMEOUT:
+>            st.session_state.clear()
+>            st.rerun()
+>    st.session_state["last_active"] = time.time()
+>    ```
+> 3. L'import en haut du fichier : `import time`
+
+---
+
 ## Fonctionnalités
 
 - Chat Q&A basé sur tes documents
