@@ -10,6 +10,7 @@ import os
 import subprocess
 import sys
 
+import chromadb
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -71,6 +72,8 @@ def build_vectorstore(embeddings: HuggingFaceEmbeddings, persist_dir: str = None
         vectordb = Chroma(embedding_function=embeddings, persist_directory=persist_dir)
         logger.info("Chroma persisté — %d chunk(s) présent(s)", vectordb._collection.count())
     else:
-        vectordb = Chroma(embedding_function=embeddings)
-        logger.info("Chroma en memoire - demarrage vierge")
+        # EphemeralClient garantit un stockage 100% memoire, sans fichier SQLite sur disque
+        client = chromadb.EphemeralClient()
+        vectordb = Chroma(client=client, embedding_function=embeddings)
+        logger.info("Chroma en memoire (EphemeralClient) - demarrage vierge")
     return vectordb
