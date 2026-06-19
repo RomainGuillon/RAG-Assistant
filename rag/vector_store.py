@@ -52,23 +52,25 @@ def build_embeddings() -> HuggingFaceEmbeddings:
     return embeddings
 
 
-def build_vectorstore(persist_dir: str, embeddings: HuggingFaceEmbeddings) -> Chroma:
-    """Connecte ou crée le vector store Chroma persisté sur disque.
+def build_vectorstore(embeddings: HuggingFaceEmbeddings, persist_dir: str = None) -> Chroma:
+    """Crée ou connecte le vector store Chroma.
 
-    Si `persist_dir` contient déjà une base Chroma, elle est rechargée telle
-    quelle. Sinon, une nouvelle collection vide est créée. Dans les deux cas,
-    le répertoire est créé automatiquement s'il n'existe pas.
+    Si `persist_dir` est fourni, la base est persistée sur disque et rechargée
+    à chaque démarrage. Sans `persist_dir`, la base est en mémoire et repart
+    vierge à chaque redémarrage de l'application.
 
     Args:
-        persist_dir: Chemin du répertoire de persistance Chroma sur disque.
-        embeddings: Modèle d'embeddings à associer au vector store, utilisé
-            pour vectoriser les requêtes lors des recherches.
+        embeddings: Modèle d'embeddings à associer au vector store.
+        persist_dir: Chemin de persistance sur disque. None = mode mémoire.
 
     Returns:
-        Instance Chroma connectée et prête à recevoir des documents ou
-        des requêtes de recherche.
+        Instance Chroma prête à recevoir des documents ou des requêtes.
     """
-    os.makedirs(persist_dir, exist_ok=True)
-    vectordb = Chroma(embedding_function=embeddings, persist_directory=persist_dir)
-    logger.info("Chroma connecté — %d chunk(s) déjà présent(s)", vectordb._collection.count())
+    if persist_dir:
+        os.makedirs(persist_dir, exist_ok=True)
+        vectordb = Chroma(embedding_function=embeddings, persist_directory=persist_dir)
+        logger.info("Chroma persisté — %d chunk(s) présent(s)", vectordb._collection.count())
+    else:
+        vectordb = Chroma(embedding_function=embeddings)
+        logger.info("Chroma en memoire - demarrage vierge")
     return vectordb

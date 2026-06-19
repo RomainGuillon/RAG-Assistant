@@ -46,7 +46,8 @@ def init_rag():
     """Initialise le vector store, les embeddings et la chaîne RAG."""
     vector_store.ensure_dependencies()
     embeddings = vector_store.build_embeddings()
-    vectordb = vector_store.build_vectorstore(config.CHROMA_DIR, embeddings)
+    # Mode mémoire : démarrage toujours vierge, les docs sont uploadés via l'UI
+    vectordb = vector_store.build_vectorstore(embeddings)
     _index_pending(vectordb)
 
     retriever = vectordb.as_retriever(
