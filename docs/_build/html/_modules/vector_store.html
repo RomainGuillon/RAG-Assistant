@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vector_store &mdash; Documentation — Projet RAG</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7a28dfa3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=e6b791cb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Projet RAG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/main.html">Point d’entrée (main)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.build_retriever"><code class="docutils literal notranslate"><span class="pre">build_retriever()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.index_pending_documents"><code class="docutils literal notranslate"><span class="pre">index_pending_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run_qa_loop"><code class="docutils literal notranslate"><span class="pre">run_qa_loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/rag_chain.html">Chaîne RAG (rag_chain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.format_context"><code class="docutils literal notranslate"><span class="pre">format_context()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain"><code class="docutils literal notranslate"><span class="pre">RagChain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.__init__"><code class="docutils literal notranslate"><span class="pre">RagChain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.ask"><code class="docutils literal notranslate"><span class="pre">RagChain.ask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.reset"><code class="docutils literal notranslate"><span class="pre">RagChain.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/document_loader.html">Chargement des documents (document_loader)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.get_indexed_filenames"><code class="docutils literal notranslate"><span class="pre">get_indexed_filenames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_file"><code class="docutils literal notranslate"><span class="pre">load_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_new_documents"><code class="docutils literal notranslate"><span class="pre">load_new_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/indexing.html">Indexation (indexing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.split_documents"><code class="docutils literal notranslate"><span class="pre">split_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.index_documents"><code class="docutils literal notranslate"><span class="pre">index_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/vector_store.html">Vector Store (vector_store)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.ensure_dependencies"><code class="docutils literal notranslate"><span class="pre">ensure_dependencies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_embeddings"><code class="docutils literal notranslate"><span class="pre">build_embeddings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_vectorstore"><code class="docutils literal notranslate"><span class="pre">build_vectorstore()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/tracing.html">Tracing Langfuse (tracing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/tracing.html#tracing.build_langfuse_handler"><code class="docutils literal notranslate"><span class="pre">build_langfuse_handler()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/logging_config.html">Logging (logging_config)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/logging_config.html#logging_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/config.html">Configuration (config)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Projet RAG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Code du module</a></li>
+      <li class="breadcrumb-item active">vector_store</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de vector_store</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Initialisation des embeddings et du vector store ChromaDB.</span>
+
+<span class="sd">Les embeddings sont générés localement via HuggingFace (sentence-transformers),</span>
+<span class="sd">sans appel API externe. ChromaDB est persisté sur disque et rechargé à chaque</span>
+<span class="sd">démarrage, ce qui évite de réindexer les documents déjà traités.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">EMBEDDING_MODEL</span> <span class="o">=</span> <span class="s2">&quot;sentence-transformers/all-MiniLM-L6-v2&quot;</span>
+
+
+<div class="viewcode-block" id="ensure_dependencies">
+<a class="viewcode-back" href="../modules/vector_store.html#vector_store.ensure_dependencies">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ensure_dependencies</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vérifie et installe les dépendances runtime si nécessaire.</span>
+
+<span class="sd">    Installe `docx2txt` via pip s&#39;il n&#39;est pas présent dans l&#39;environnement.</span>
+<span class="sd">    Cette dépendance est requise par LangChain pour charger les fichiers .docx</span>
+<span class="sd">    mais n&#39;est pas toujours incluse dans les installations minimales.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">docx2txt</span>  <span class="c1"># noqa: F401</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Installation de docx2txt...&quot;</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;docx2txt&quot;</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="build_embeddings">
+<a class="viewcode-back" href="../modules/vector_store.html#vector_store.build_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_embeddings</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instancie le modèle d&#39;embeddings HuggingFace en local.</span>
+
+<span class="sd">    Utilise `all-MiniLM-L6-v2`, un modèle léger (22 M paramètres) produisant</span>
+<span class="sd">    des vecteurs de 384 dimensions. Le modèle tourne entièrement sur CPU,</span>
+<span class="sd">    sans appel API externe, et les embeddings sont normalisés (norme L2 = 1)</span>
+<span class="sd">    pour accélérer les recherches par similarité cosinus.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Instance HuggingFaceEmbeddings prête à vectoriser des textes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="n">EMBEDDING_MODEL</span><span class="p">,</span>
+        <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s2">&quot;cpu&quot;</span><span class="p">},</span>
+        <span class="n">encode_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;normalize_embeddings&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Modèle d&#39;embeddings chargé : </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">EMBEDDING_MODEL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">embeddings</span></div>
+
+
+
+<div class="viewcode-block" id="build_vectorstore">
+<a class="viewcode-back" href="../modules/vector_store.html#vector_store.build_vectorstore">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_vectorstore</span><span class="p">(</span><span class="n">persist_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">:</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chroma</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connecte ou crée le vector store Chroma persisté sur disque.</span>
+
+<span class="sd">    Si `persist_dir` contient déjà une base Chroma, elle est rechargée telle</span>
+<span class="sd">    quelle. Sinon, une nouvelle collection vide est créée. Dans les deux cas,</span>
+<span class="sd">    le répertoire est créé automatiquement s&#39;il n&#39;existe pas.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        persist_dir: Chemin du répertoire de persistance Chroma sur disque.</span>
+<span class="sd">        embeddings: Modèle d&#39;embeddings à associer au vector store, utilisé</span>
+<span class="sd">            pour vectoriser les requêtes lors des recherches.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Instance Chroma connectée et prête à recevoir des documents ou</span>
+<span class="sd">        des requêtes de recherche.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">persist_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">vectordb</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span><span class="n">embedding_function</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_dir</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Chroma connecté — </span><span class="si">%d</span><span class="s2"> chunk(s) déjà présent(s)&quot;</span><span class="p">,</span> <span class="n">vectordb</span><span class="o">.</span><span class="n">_collection</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">vectordb</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur .</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>document_loader &mdash; Documentation — Projet RAG</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7a28dfa3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=e6b791cb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Projet RAG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/main.html">Point d’entrée (main)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.build_retriever"><code class="docutils literal notranslate"><span class="pre">build_retriever()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.index_pending_documents"><code class="docutils literal notranslate"><span class="pre">index_pending_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run_qa_loop"><code class="docutils literal notranslate"><span class="pre">run_qa_loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/rag_chain.html">Chaîne RAG (rag_chain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.format_context"><code class="docutils literal notranslate"><span class="pre">format_context()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain"><code class="docutils literal notranslate"><span class="pre">RagChain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.__init__"><code class="docutils literal notranslate"><span class="pre">RagChain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.ask"><code class="docutils literal notranslate"><span class="pre">RagChain.ask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.reset"><code class="docutils literal notranslate"><span class="pre">RagChain.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/document_loader.html">Chargement des documents (document_loader)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.get_indexed_filenames"><code class="docutils literal notranslate"><span class="pre">get_indexed_filenames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_file"><code class="docutils literal notranslate"><span class="pre">load_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_new_documents"><code class="docutils literal notranslate"><span class="pre">load_new_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/indexing.html">Indexation (indexing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.split_documents"><code class="docutils literal notranslate"><span class="pre">split_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.index_documents"><code class="docutils literal notranslate"><span class="pre">index_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/vector_store.html">Vector Store (vector_store)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.ensure_dependencies"><code class="docutils literal notranslate"><span class="pre">ensure_dependencies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_embeddings"><code class="docutils literal notranslate"><span class="pre">build_embeddings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_vectorstore"><code class="docutils literal notranslate"><span class="pre">build_vectorstore()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/tracing.html">Tracing Langfuse (tracing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/tracing.html#tracing.build_langfuse_handler"><code class="docutils literal notranslate"><span class="pre">build_langfuse_handler()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/logging_config.html">Logging (logging_config)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/logging_config.html#logging_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/config.html">Configuration (config)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Projet RAG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Code du module</a></li>
+      <li class="breadcrumb-item active">document_loader</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de document_loader</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Chargement des documents source et détection des fichiers déjà indexés dans Chroma.</span>
+
+<span class="sd">Formats pris en charge : PDF (.pdf), Word (.docx), PowerPoint (.ppt, .pptx).</span>
+<span class="sd">Chaque document chargé est enrichi de métadonnées (nom de fichier, type, numéro de page)</span>
+<span class="sd">afin de pouvoir citer les sources dans les réponses de la chaîne RAG.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Docx2txtLoader</span><span class="p">,</span>
+    <span class="n">PyPDFLoader</span><span class="p">,</span>
+    <span class="n">UnstructuredPowerPointLoader</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">LOADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;.pdf&quot;</span><span class="p">:</span> <span class="n">PyPDFLoader</span><span class="p">,</span>
+    <span class="s2">&quot;.docx&quot;</span><span class="p">:</span> <span class="n">Docx2txtLoader</span><span class="p">,</span>
+    <span class="s2">&quot;.ppt&quot;</span><span class="p">:</span> <span class="n">UnstructuredPowerPointLoader</span><span class="p">,</span>
+    <span class="s2">&quot;.pptx&quot;</span><span class="p">:</span> <span class="n">UnstructuredPowerPointLoader</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="get_indexed_filenames">
+<a class="viewcode-back" href="../modules/document_loader.html#document_loader.get_indexed_filenames">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_indexed_filenames</span><span class="p">(</span><span class="n">vectordb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retourne l&#39;ensemble des noms de fichiers déjà présents dans le vector store.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vectordb: Instance Chroma connectée au vector store persisté.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Ensemble de chaînes (set[str]) contenant les noms de fichiers indexés,</span>
+<span class="sd">        tels qu&#39;ils sont stockés dans la métadonnée `fichier` de chaque chunk.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">resultats</span> <span class="o">=</span> <span class="n">vectordb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;fichier&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">resultats</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;fichier&quot;</span> <span class="ow">in</span> <span class="n">m</span><span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="load_file">
+<a class="viewcode-back" href="../modules/document_loader.html#document_loader.load_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_file</span><span class="p">(</span><span class="n">fichier</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Charge un fichier et enrichit chaque page/slide avec ses métadonnées.</span>
+
+<span class="sd">    Sélectionne automatiquement le bon loader LangChain selon l&#39;extension du</span>
+<span class="sd">    fichier, puis ajoute à chaque document les métadonnées `fichier`, `type`</span>
+<span class="sd">    et `page_number` utilisées pour citer les sources dans les réponses.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fichier: Chemin absolu vers le fichier à charger. L&#39;extension doit</span>
+<span class="sd">            être présente dans le dictionnaire LOADERS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Liste de Documents LangChain, un par page (PDF) ou par slide (PPTX),</span>
+<span class="sd">        chacun enrichi des métadonnées de source.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        KeyError: Si l&#39;extension du fichier n&#39;est pas prise en charge.</span>
+<span class="sd">        Exception: Toute erreur levée par le loader sous-jacent (fichier</span>
+<span class="sd">            corrompu, droits insuffisants, etc.) est propagée à l&#39;appelant.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">loader_cls</span> <span class="o">=</span> <span class="n">LOADERS</span><span class="p">[</span><span class="n">fichier</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+    <span class="n">docs</span> <span class="o">=</span> <span class="n">loader_cls</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fichier</span><span class="p">))</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;fichier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fichier</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fichier</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;page_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+
+    <span class="k">return</span> <span class="n">docs</span></div>
+
+
+
+<div class="viewcode-block" id="load_new_documents">
+<a class="viewcode-back" href="../modules/document_loader.html#document_loader.load_new_documents">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_new_documents</span><span class="p">(</span><span class="n">repertoire</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">deja_indexes</span><span class="p">:</span> <span class="nb">set</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Charge uniquement les fichiers du répertoire qui ne sont pas encore indexés.</span>
+
+<span class="sd">    Parcourt récursivement `repertoire`, filtre les fichiers dont le nom est</span>
+<span class="sd">    absent de `deja_indexes`, et les charge via `load_file`. Les erreurs de</span>
+<span class="sd">    chargement sont loggées sans interrompre le traitement des autres fichiers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        repertoire: Répertoire racine à scanner récursivement.</span>
+<span class="sd">        deja_indexes: Ensemble des noms de fichiers déjà présents dans Chroma,</span>
+<span class="sd">            tel que retourné par `get_indexed_filenames`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Liste de Documents LangChain pour tous les nouveaux fichiers chargés</span>
+<span class="sd">        avec succès. Retourne une liste vide si aucun nouveau fichier n&#39;est trouvé.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fichiers_trouves</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">repertoire</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">LOADERS</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fichiers_trouves</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Aucun fichier PDF/DOCX/PPTX trouvé dans </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">repertoire</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">nouveaux</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fichiers_trouves</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">deja_indexes</span><span class="p">]</span>
+    <span class="n">deja_vus</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fichiers_trouves</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">deja_indexes</span><span class="p">]</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> fichier(s) trouvé(s) dans </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fichiers_trouves</span><span class="p">),</span> <span class="n">repertoire</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Déjà indexés : </span><span class="si">%d</span><span class="s2"> | Nouveaux : </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">deja_vus</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nouveaux</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">fichier</span> <span class="ow">in</span> <span class="n">deja_vus</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ignoré (déjà indexé) : </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fichier</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">tous_les_docs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">fichier</span> <span class="ow">in</span> <span class="n">nouveaux</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">docs</span> <span class="o">=</span> <span class="n">load_file</span><span class="p">(</span><span class="n">fichier</span><span class="p">)</span>
+            <span class="n">tous_les_docs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> -&gt; </span><span class="si">%d</span><span class="s2"> page(s)/slide(s) chargé(s)&quot;</span><span class="p">,</span> <span class="n">fichier</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Erreur lors du chargement de </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fichier</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tous_les_docs</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur .</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

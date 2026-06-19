@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>main &mdash; Documentation — Projet RAG</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7a28dfa3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=e6b791cb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Projet RAG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/main.html">Point d’entrée (main)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.build_retriever"><code class="docutils literal notranslate"><span class="pre">build_retriever()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.index_pending_documents"><code class="docutils literal notranslate"><span class="pre">index_pending_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run_qa_loop"><code class="docutils literal notranslate"><span class="pre">run_qa_loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/rag_chain.html">Chaîne RAG (rag_chain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.format_context"><code class="docutils literal notranslate"><span class="pre">format_context()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain"><code class="docutils literal notranslate"><span class="pre">RagChain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.__init__"><code class="docutils literal notranslate"><span class="pre">RagChain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.ask"><code class="docutils literal notranslate"><span class="pre">RagChain.ask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.reset"><code class="docutils literal notranslate"><span class="pre">RagChain.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/document_loader.html">Chargement des documents (document_loader)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.get_indexed_filenames"><code class="docutils literal notranslate"><span class="pre">get_indexed_filenames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_file"><code class="docutils literal notranslate"><span class="pre">load_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_new_documents"><code class="docutils literal notranslate"><span class="pre">load_new_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/indexing.html">Indexation (indexing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.split_documents"><code class="docutils literal notranslate"><span class="pre">split_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.index_documents"><code class="docutils literal notranslate"><span class="pre">index_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/vector_store.html">Vector Store (vector_store)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.ensure_dependencies"><code class="docutils literal notranslate"><span class="pre">ensure_dependencies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_embeddings"><code class="docutils literal notranslate"><span class="pre">build_embeddings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_vectorstore"><code class="docutils literal notranslate"><span class="pre">build_vectorstore()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/tracing.html">Tracing Langfuse (tracing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/tracing.html#tracing.build_langfuse_handler"><code class="docutils literal notranslate"><span class="pre">build_langfuse_handler()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/logging_config.html">Logging (logging_config)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/logging_config.html#logging_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/config.html">Configuration (config)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Projet RAG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Code du module</a></li>
+      <li class="breadcrumb-item active">main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de main</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Point d&#39;entrée de l&#39;application RAG.</span>
+
+<span class="sd">Séquence d&#39;exécution :</span>
+<span class="sd">    1. Initialisation du logging et du vector store Chroma.</span>
+<span class="sd">    2. Indexation incrémentale des documents du répertoire source.</span>
+<span class="sd">    3. Construction du retriever et de la chaîne RAG.</span>
+<span class="sd">    4. Boucle interactive de questions/réponses en console.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">document_loader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">indexing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tracing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vector_store</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">logging_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rag_chain</span><span class="w"> </span><span class="kn">import</span> <span class="n">RagChain</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="build_retriever">
+<a class="viewcode-back" href="../modules/main.html#main.build_retriever">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_retriever</span><span class="p">(</span><span class="n">vectordb</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure le retriever en mode MMR (Maximal Marginal Relevance).</span>
+
+<span class="sd">    MMR équilibre pertinence et diversité : parmi `fetch_k` candidats, il</span>
+<span class="sd">    sélectionne les `k` chunks qui maximisent à la fois la similarité avec</span>
+<span class="sd">    la requête et la diversité entre eux.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vectordb: Instance Chroma connectée au vector store persisté.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        VectorStoreRetriever configuré avec les paramètres définis dans config.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">vectordb</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span>
+        <span class="n">search_type</span><span class="o">=</span><span class="s2">&quot;mmr&quot;</span><span class="p">,</span>
+        <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">RETRIEVER_K</span><span class="p">,</span>
+            <span class="s2">&quot;fetch_k&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">RETRIEVER_FETCH_K</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="index_pending_documents">
+<a class="viewcode-back" href="../modules/main.html#main.index_pending_documents">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">index_pending_documents</span><span class="p">(</span><span class="n">vectordb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Indexe les fichiers du répertoire source qui ne sont pas encore dans Chroma.</span>
+
+<span class="sd">    Compare les fichiers présents dans `config.DOC_DIR` avec ceux déjà indexés</span>
+<span class="sd">    dans le vector store, puis découpe et vectorise uniquement les nouveaux.</span>
+<span class="sd">    Si aucun nouveau fichier n&#39;est détecté, la fonction retourne immédiatement</span>
+<span class="sd">    sans modifier le vector store.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vectordb: Instance Chroma connectée au vector store persisté.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">deja_indexes</span> <span class="o">=</span> <span class="n">document_loader</span><span class="o">.</span><span class="n">get_indexed_filenames</span><span class="p">(</span><span class="n">vectordb</span><span class="p">)</span>
+    <span class="n">nouvelles_pages</span> <span class="o">=</span> <span class="n">document_loader</span><span class="o">.</span><span class="n">load_new_documents</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DOC_DIR</span><span class="p">,</span> <span class="n">deja_indexes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nouvelles_pages</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Aucun nouveau fichier à indexer, la base est à jour.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">indexing</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">nouvelles_pages</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">CHUNK_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">CHUNK_OVERLAP</span><span class="p">)</span>
+    <span class="n">indexing</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">vectordb</span><span class="p">,</span> <span class="n">chunks</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="run_qa_loop">
+<a class="viewcode-back" href="../modules/main.html#main.run_qa_loop">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_qa_loop</span><span class="p">(</span><span class="n">rag_chain</span><span class="p">:</span> <span class="n">RagChain</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lance la boucle interactive de questions/réponses en console.</span>
+
+<span class="sd">    Lit les questions sur stdin et affiche les réponses sur stdout. Les</span>
+<span class="sd">    commandes spéciales `reset` et `quit`/`exit`/`q` sont interceptées</span>
+<span class="sd">    avant d&#39;être transmises à la chaîne RAG.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        rag_chain: Instance de RagChain prête à recevoir des questions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posez vos questions sur les documents indexés.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tapez &#39;reset&#39; pour effacer l&#39;historique, &#39;quit&#39; pour sortir.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">question</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Question &gt; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">question</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">question</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;quit&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">}:</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">question</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;reset&quot;</span><span class="p">:</span>
+            <span class="n">rag_chain</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="k">continue</span>
+
+        <span class="n">reponse</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">reponse</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="run">
+<a class="viewcode-back" href="../modules/main.html#main.run">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialise l&#39;application et démarre la boucle de questions/réponses.</span>
+
+<span class="sd">    Orchestre le démarrage complet : logging, vector store, indexation</span>
+<span class="sd">    incrémentale, construction du retriever et de la chaîne RAG, puis</span>
+<span class="sd">    délègue à `run_qa_loop` pour la session interactive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">setup_logging</span><span class="p">()</span>
+
+    <span class="n">vector_store</span><span class="o">.</span><span class="n">ensure_dependencies</span><span class="p">()</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">build_embeddings</span><span class="p">()</span>
+    <span class="n">vectordb</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">build_vectorstore</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">CHROMA_DIR</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+
+    <span class="n">index_pending_documents</span><span class="p">(</span><span class="n">vectordb</span><span class="p">)</span>
+
+    <span class="n">retriever</span> <span class="o">=</span> <span class="n">build_retriever</span><span class="p">(</span><span class="n">vectordb</span><span class="p">)</span>
+    <span class="n">langfuse_handler</span> <span class="o">=</span> <span class="n">tracing</span><span class="o">.</span><span class="n">build_langfuse_handler</span><span class="p">()</span>
+    <span class="n">rag_chain</span> <span class="o">=</span> <span class="n">RagChain</span><span class="p">(</span>
+        <span class="n">retriever</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">API_KEY</span><span class="p">,</span>
+        <span class="n">callback_handler</span><span class="o">=</span><span class="n">langfuse_handler</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">run_qa_loop</span><span class="p">(</span><span class="n">rag_chain</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur .</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

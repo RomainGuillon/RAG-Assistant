@@ -1,0 +1,15 @@
+python-dotenv
+langfuse
+langchain
+langchain-community
+langchain-core
+langchain-chroma
+langchain-huggingface
+langchain-text-splitters
+langchain-openai
+chromadb
+sentence-transformers
+docx2txt
+unstructured
+python-pptx
+streamlit

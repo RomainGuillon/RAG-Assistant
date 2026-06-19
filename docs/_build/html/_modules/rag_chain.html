@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rag_chain &mdash; Documentation — Projet RAG</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7a28dfa3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=e6b791cb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Projet RAG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/main.html">Point d’entrée (main)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.build_retriever"><code class="docutils literal notranslate"><span class="pre">build_retriever()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.index_pending_documents"><code class="docutils literal notranslate"><span class="pre">index_pending_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run_qa_loop"><code class="docutils literal notranslate"><span class="pre">run_qa_loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/main.html#main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/rag_chain.html">Chaîne RAG (rag_chain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.format_context"><code class="docutils literal notranslate"><span class="pre">format_context()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain"><code class="docutils literal notranslate"><span class="pre">RagChain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.__init__"><code class="docutils literal notranslate"><span class="pre">RagChain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.ask"><code class="docutils literal notranslate"><span class="pre">RagChain.ask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/rag_chain.html#rag_chain.RagChain.reset"><code class="docutils literal notranslate"><span class="pre">RagChain.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/document_loader.html">Chargement des documents (document_loader)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.get_indexed_filenames"><code class="docutils literal notranslate"><span class="pre">get_indexed_filenames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_file"><code class="docutils literal notranslate"><span class="pre">load_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/document_loader.html#document_loader.load_new_documents"><code class="docutils literal notranslate"><span class="pre">load_new_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/indexing.html">Indexation (indexing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.split_documents"><code class="docutils literal notranslate"><span class="pre">split_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/indexing.html#indexing.index_documents"><code class="docutils literal notranslate"><span class="pre">index_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/vector_store.html">Vector Store (vector_store)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.ensure_dependencies"><code class="docutils literal notranslate"><span class="pre">ensure_dependencies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_embeddings"><code class="docutils literal notranslate"><span class="pre">build_embeddings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/vector_store.html#vector_store.build_vectorstore"><code class="docutils literal notranslate"><span class="pre">build_vectorstore()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/tracing.html">Tracing Langfuse (tracing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/tracing.html#tracing.build_langfuse_handler"><code class="docutils literal notranslate"><span class="pre">build_langfuse_handler()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/logging_config.html">Logging (logging_config)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/logging_config.html#logging_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/config.html">Configuration (config)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Projet RAG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Code du module</a></li>
+      <li class="breadcrumb-item active">rag_chain</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de rag_chain</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Chaîne RAG : prompt système, LLM, retriever, mémoire conversationnelle et tracing.&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIMessage</span><span class="p">,</span> <span class="n">HumanMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnableLambda</span><span class="p">,</span> <span class="n">RunnablePassthrough</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tu es un assistant expert qui répond UNIQUEMENT à partir des documents fournis.</span>
+
+<span class="s2">RÈGLE ABSOLUE : si l&#39;information n&#39;est pas explicitement présente dans le contexte</span>
+<span class="s2">ci-dessous, réponds exactement :</span>
+<span class="s2">&quot;Je ne trouve pas cette information dans les documents disponibles.&quot;</span>
+<span class="s2">Tu n&#39;as PAS le droit d&#39;utiliser tes connaissances générales, ni d&#39;inférer ou d&#39;extrapoler.</span>
+
+<span class="s2">Consignes de réponse (uniquement si l&#39;info est dans les documents) :</span>
+<span class="s2">- Commence par un résumé en 2-3 phrases</span>
+<span class="s2">- Développe point par point dans l&#39;ordre logique</span>
+<span class="s2">- Utilise des titres clairs pour chaque section</span>
+<span class="s2">- Cite le fichier source entre crochets [fichier — p.X]</span>
+<span class="s2">- Tiens compte de l&#39;historique de la conversation</span>
+
+<span class="s2">Contexte extrait des documents :</span>
+<span class="si">{context}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">PROMPT_TEMPLATE</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">SYSTEM_PROMPT</span><span class="p">),</span>
+    <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;historique&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{question}</span><span class="s2">&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+
+
+<div class="viewcode-block" id="format_context">
+<a class="viewcode-back" href="../modules/rag_chain.html#rag_chain.format_context">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_context</span><span class="p">(</span><span class="n">docs</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Formate les chunks récupérés par le retriever en un bloc de contexte.</span>
+
+<span class="sd">    Chaque chunk est précédé d&#39;une ligne de référence `[Source : fichier — p.X]`</span>
+<span class="sd">    afin que le LLM puisse citer ses sources dans la réponse.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        docs: Liste de Documents LangChain retournés par le retriever,</span>
+<span class="sd">            chacun devant posséder les métadonnées `fichier` et `page_number`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Chaîne de caractères assemblant tous les chunks séparés par des</span>
+<span class="sd">        lignes vides, prête à être injectée dans le prompt système.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;[Source : </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fichier&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> — p.</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page_number&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">page_content</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="RagChain">
+<a class="viewcode-back" href="../modules/rag_chain.html#rag_chain.RagChain">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RagChain</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Chaîne RAG complète : retrieval, prompt, LLM et mémoire conversationnelle.</span>
+
+<span class="sd">    Construit un pipeline LangChain qui, à chaque question :</span>
+<span class="sd">        1. Interroge le vector store via le retriever pour récupérer les chunks</span>
+<span class="sd">           les plus pertinents.</span>
+<span class="sd">        2. Injecte ces chunks, l&#39;historique de conversation et la question dans</span>
+<span class="sd">           un prompt système strict.</span>
+<span class="sd">        3. Envoie le prompt au LLM OpenAI et retourne la réponse textuelle.</span>
+<span class="sd">        4. Met à jour l&#39;historique pour les questions de suivi.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RagChain.__init__">
+<a class="viewcode-back" href="../modules/rag_chain.html#rag_chain.RagChain.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callback_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise la chaîne RAG et assemble le pipeline LangChain.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            retriever: VectorStoreRetriever configuré pour la recherche MMR.</span>
+<span class="sd">            model: Identifiant du modèle OpenAI à utiliser (ex. `gpt-4o-mini`).</span>
+<span class="sd">            api_key: Clé d&#39;authentification OpenAI.</span>
+<span class="sd">            callback_handler: Handler de callback optionnel (ex. Langfuse)</span>
+<span class="sd">                pour le tracing des appels. Passer None désactive le tracing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">retriever</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback_handler</span> <span class="o">=</span> <span class="n">callback_handler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">historique</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Le retriever fait partie de la chaîne : un seul .invoke() trace</span>
+        <span class="c1"># l&#39;ensemble du pipeline (récupération + prompt + LLM) dans Langfuse.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span> <span class="o">|</span> <span class="n">format_context</span><span class="p">,</span>
+                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">(),</span>
+                <span class="s2">&quot;historique&quot;</span><span class="p">:</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">historique</span><span class="p">),</span>
+            <span class="p">}</span>
+            <span class="o">|</span> <span class="n">PROMPT_TEMPLATE</span>
+            <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span>
+            <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RagChain.ask">
+<a class="viewcode-back" href="../modules/rag_chain.html#rag_chain.RagChain.ask">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pose une question et retourne la réponse générée par le LLM.</span>
+
+<span class="sd">        Invoque le pipeline complet (retrieval → prompt → LLM), puis met à</span>
+<span class="sd">        jour l&#39;historique interne avec la question et la réponse pour que les</span>
+<span class="sd">        échanges suivants puissent s&#39;y référer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            question: Question en langage naturel posée par l&#39;utilisateur.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Réponse textuelle du LLM, basée uniquement sur les documents</span>
+<span class="sd">            indexés et l&#39;historique de conversation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">callback_handler</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_handler</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="n">reponse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;callbacks&quot;</span><span class="p">:</span> <span class="n">callbacks</span><span class="p">})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">historique</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">question</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">historique</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">reponse</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Question traitée&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">reponse</span></div>
+
+
+<div class="viewcode-block" id="RagChain.reset">
+<a class="viewcode-back" href="../modules/rag_chain.html#rag_chain.RagChain.reset">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Réinitialise l&#39;historique de conversation.</span>
+
+<span class="sd">        Vide la liste des messages accumulés, permettant de repartir d&#39;une</span>
+<span class="sd">        session vierge sans relancer l&#39;application. La commande `reset` dans</span>
+<span class="sd">        la boucle interactive appelle cette méthode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">historique</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Historique de conversation réinitialisé&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur .</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

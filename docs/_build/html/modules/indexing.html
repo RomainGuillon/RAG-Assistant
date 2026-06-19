@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indexation (indexing) &mdash; Documentation — Projet RAG</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7a28dfa3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=e6b791cb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Vector Store (vector_store)" href="vector_store.html" />
+    <link rel="prev" title="Chargement des documents (document_loader)" href="document_loader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Projet RAG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">Point d’entrée (main)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.build_retriever"><code class="docutils literal notranslate"><span class="pre">build_retriever()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.index_pending_documents"><code class="docutils literal notranslate"><span class="pre">index_pending_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.run_qa_loop"><code class="docutils literal notranslate"><span class="pre">run_qa_loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rag_chain.html">Chaîne RAG (rag_chain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rag_chain.html#rag_chain.format_context"><code class="docutils literal notranslate"><span class="pre">format_context()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rag_chain.html#rag_chain.RagChain"><code class="docutils literal notranslate"><span class="pre">RagChain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rag_chain.html#rag_chain.RagChain.__init__"><code class="docutils literal notranslate"><span class="pre">RagChain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rag_chain.html#rag_chain.RagChain.ask"><code class="docutils literal notranslate"><span class="pre">RagChain.ask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rag_chain.html#rag_chain.RagChain.reset"><code class="docutils literal notranslate"><span class="pre">RagChain.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="document_loader.html">Chargement des documents (document_loader)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="document_loader.html#document_loader.get_indexed_filenames"><code class="docutils literal notranslate"><span class="pre">get_indexed_filenames()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="document_loader.html#document_loader.load_file"><code class="docutils literal notranslate"><span class="pre">load_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="document_loader.html#document_loader.load_new_documents"><code class="docutils literal notranslate"><span class="pre">load_new_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Indexation (indexing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#indexing.split_documents"><code class="docutils literal notranslate"><span class="pre">split_documents()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#indexing.index_documents"><code class="docutils literal notranslate"><span class="pre">index_documents()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vector_store.html">Vector Store (vector_store)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vector_store.html#vector_store.ensure_dependencies"><code class="docutils literal notranslate"><span class="pre">ensure_dependencies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector_store.html#vector_store.build_embeddings"><code class="docutils literal notranslate"><span class="pre">build_embeddings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector_store.html#vector_store.build_vectorstore"><code class="docutils literal notranslate"><span class="pre">build_vectorstore()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing Langfuse (tracing)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#tracing.build_langfuse_handler"><code class="docutils literal notranslate"><span class="pre">build_langfuse_handler()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging_config.html">Logging (logging_config)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging_config.html#logging_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration (config)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Projet RAG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Indexation (indexing)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/indexing.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-indexing">
+<span id="indexation-indexing"></span><h1>Indexation (indexing)<a class="headerlink" href="#module-indexing" title="Lien vers cette rubrique"></a></h1>
+<p>Découpage des documents en chunks et indexation dans le vector store Chroma.</p>
+<p>Le découpage utilise RecursiveCharacterTextSplitter de LangChain, qui coupe
+le texte en respectant l’ordre de priorité : paragraphes → phrases → mots.
+Un chevauchement (overlap) est conservé entre les chunks pour éviter de perdre
+le contexte aux jonctions.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="indexing.split_documents">
+<span class="sig-prename descclassname"><span class="pre">indexing.</span></span><span class="sig-name descname"><span class="pre">split_documents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(dans Python v3.14)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(dans Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_overlap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(dans Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(dans Python v3.14)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/indexing.html#split_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#indexing.split_documents" title="Lien vers cette définition"></a></dt>
+<dd><p>Découpe une liste de documents en chunks de taille fixe avec chevauchement.</p>
+<p>Utilise RecursiveCharacterTextSplitter qui tente de couper le texte aux
+séparateurs naturels (paragraphe, phrase, mot) dans cet ordre de priorité,
+afin de préserver la cohérence sémantique de chaque chunk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> – Liste de Documents LangChain à découper.</p></li>
+<li><p><strong>chunk_size</strong> – Taille maximale d’un chunk en nombre de caractères.</p></li>
+<li><p><strong>chunk_overlap</strong> – Nombre de caractères partagés entre deux chunks
+consécutifs pour ne pas perdre le contexte aux jonctions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>Liste de Documents LangChain résultant du découpage, avec la
+métadonnée <cite>start_index</cite> indiquant la position du chunk dans le
+document d’origine.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="indexing.index_documents">
+<span class="sig-prename descclassname"><span class="pre">indexing.</span></span><span class="sig-name descname"><span class="pre">index_documents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectordb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(dans Python v3.14)"><span class="pre">list</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(dans Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/indexing.html#index_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#indexing.index_documents" title="Lien vers cette définition"></a></dt>
+<dd><p>Vectorise et persiste les chunks dans le vector store Chroma.</p>
+<p>Calcule les embeddings de chaque chunk via le modèle configuré dans
+<cite>vectordb</cite>, puis les insère dans la collection Chroma. L’opération
+est persistée automatiquement sur disque.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vectordb</strong> – Instance Chroma connectée au vector store persisté.</p></li>
+<li><p><strong>chunks</strong> – Liste de Documents LangChain à vectoriser et indexer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="document_loader.html" class="btn btn-neutral float-left" title="Chargement des documents (document_loader)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="vector_store.html" class="btn btn-neutral float-right" title="Vector Store (vector_store)" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur .</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
