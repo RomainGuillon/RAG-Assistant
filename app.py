@@ -196,8 +196,6 @@ with st.sidebar:
             "ce qui est paradoxal, ce qui est affirmé dans un document et contredit ou nuancé dans un autre. "
             "Structure ta réponse par tension identifiée, en citant les sources impliquées."
         )
-        st.session_state._prompt_friction = PROMPT_FRICTION
-
         PROMPT_AUDIT = (
             "Fais un audit systémique de notre conversation : "
             "quels aspects, thèmes ou arguments présents dans les documents indexés "
@@ -207,11 +205,14 @@ with st.sidebar:
             "parce que le retriever n'a pas récupéré ces passages, "
             "ou parce que d'autres éléments ont pris le dessus ?"
         )
-        st.session_state._prompt_audit = PROMPT_AUDIT
-
         if st.button("⚡ Tensions & divergences", use_container_width=True,
                      help="Force le modèle à chercher les contradictions entre documents"):
             st.session_state.pending_question = PROMPT_FRICTION
+            st.rerun()
+
+        if st.button("🔍 Audit des angles morts", use_container_width=True,
+                     help="Identifie ce qui n'a pas été mobilisé dans la conversation"):
+            st.session_state.pending_question = PROMPT_AUDIT
             st.rerun()
 
         st.divider()
@@ -242,17 +243,13 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# Prompt injecté depuis la sidebar (friction) ou bouton audit
+# Prompt injecté depuis la sidebar (friction / audit)
 question_auto = st.session_state.pop("pending_question", None)
+# st.chat_input doit toujours être rendu pour rester visible
+user_input = st.chat_input("Posez votre question...")
+question = question_auto or user_input
 
-# Bouton audit affiché sous le chat, uniquement si conversation en cours
-if st.session_state.messages and nb_fichiers > 0:
-    if st.button("🔍 Audit des angles morts", use_container_width=False,
-                 help="Identifie ce qui n'a pas été mobilisé dans la conversation"):
-        st.session_state.pending_question = st.session_state.get("_prompt_audit", "")
-        st.rerun()
-
-if question := (question_auto or st.chat_input("Posez votre question...")):
+if question:
     st.session_state.messages.append({"role": "user", "content": question})
     with st.chat_message("user"):
         st.markdown(question)
