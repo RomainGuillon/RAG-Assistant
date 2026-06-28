@@ -20,12 +20,7 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 
 def ensure_dependencies() -> None:
-    """Vérifie et installe les dépendances runtime si nécessaire.
-
-    Installe `docx2txt` via pip s'il n'est pas présent dans l'environnement.
-    Cette dépendance est requise par LangChain pour charger les fichiers .docx
-    mais n'est pas toujours incluse dans les installations minimales.
-    """
+    """Installe `docx2txt` si absent (workaround : absent des installations minimales)."""
     try:
         import docx2txt  # noqa: F401
     except ImportError:
@@ -34,15 +29,9 @@ def ensure_dependencies() -> None:
 
 
 def build_embeddings() -> HuggingFaceEmbeddings:
-    """Instancie le modèle d'embeddings HuggingFace en local.
+    """Charge `all-MiniLM-L6-v2` en local sur CPU avec normalisation L2.
 
-    Utilise `all-MiniLM-L6-v2`, un modèle léger (22 M paramètres) produisant
-    des vecteurs de 384 dimensions. Le modèle tourne entièrement sur CPU,
-    sans appel API externe, et les embeddings sont normalisés (norme L2 = 1)
-    pour accélérer les recherches par similarité cosinus.
-
-    Returns:
-        Instance HuggingFaceEmbeddings prête à vectoriser des textes.
+    Pas d'appel API — 22 M paramètres, vecteurs de 384 dimensions.
     """
     embeddings = HuggingFaceEmbeddings(
         model_name=EMBEDDING_MODEL,
@@ -56,16 +45,8 @@ def build_embeddings() -> HuggingFaceEmbeddings:
 def build_vectorstore(embeddings: HuggingFaceEmbeddings, persist_dir: str = None) -> Chroma:
     """Crée ou connecte le vector store Chroma.
 
-    Si `persist_dir` est fourni, la base est persistée sur disque et rechargée
-    à chaque démarrage. Sans `persist_dir`, la base est en mémoire et repart
-    vierge à chaque redémarrage de l'application.
-
-    Args:
-        embeddings: Modèle d'embeddings à associer au vector store.
-        persist_dir: Chemin de persistance sur disque. None = mode mémoire.
-
-    Returns:
-        Instance Chroma prête à recevoir des documents ou des requêtes.
+    Avec `persist_dir` : persisté sur disque, rechargé à chaque démarrage.
+    Sans `persist_dir` : EphemeralClient, repart vierge à chaque session.
     """
     if persist_dir:
         os.makedirs(persist_dir, exist_ok=True)

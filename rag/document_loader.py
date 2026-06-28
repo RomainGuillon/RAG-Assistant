@@ -16,15 +16,9 @@ logger = logging.getLogger(__name__)
 
 
 def _load_pptx(filepath: Path) -> list:
-    """Charge un fichier PPTX via python-pptx (sans dépendance à unstructured/spaCy).
+    """Extrait le texte d'un PPTX slide par slide (sans dépendance à unstructured/spaCy).
 
-    Extrait le texte slide par slide. Les slides vides sont ignorées.
-
-    Args:
-        filepath: Chemin vers le fichier .ppt/.pptx.
-
-    Returns:
-        Liste de Documents LangChain, un par slide non vide.
+    Les slides vides sont ignorées.
     """
     prs = Presentation(str(filepath))
     docs = []
@@ -48,27 +42,13 @@ LOADERS = {
 
 
 def get_indexed_filenames(vectordb) -> set:
-    """Retourne l'ensemble des noms de fichiers déjà présents dans le vector store.
-
-    Args:
-        vectordb: Instance Chroma connectée au vector store persisté.
-
-    Returns:
-        Ensemble de chaînes (set[str]) contenant les noms de fichiers indexés.
-    """
+    """Retourne les noms de fichiers déjà présents dans le vector store."""
     resultats = vectordb.get(include=["metadatas"])
     return {m["fichier"] for m in resultats["metadatas"] if "fichier" in m}
 
 
 def get_indexed_files_info(vectordb) -> dict:
-    """Retourne les fichiers indexés avec leur nombre de chunks respectif.
-
-    Args:
-        vectordb: Instance Chroma connectée au vector store persisté.
-
-    Returns:
-        Dictionnaire {nom_fichier: nombre_de_chunks}.
-    """
+    """Retourne un dict {nom_fichier: nombre_de_chunks} pour tous les fichiers indexés."""
     resultats = vectordb.get(include=["metadatas"])
     counts = {}
     for m in resultats["metadatas"]:
@@ -102,19 +82,10 @@ def delete_document(vectordb, filename: str, doc_dir: Path) -> None:
 
 
 def load_file(fichier: Path) -> list:
-    """Charge un fichier et enrichit chaque page/slide avec ses métadonnées.
+    """Charge un fichier et enrichit chaque page/slide avec les métadonnées de source.
 
-    Sélectionne automatiquement le bon loader LangChain selon l'extension du
-    fichier, puis ajoute à chaque document les métadonnées `fichier`, `type`
-    et `page_number` utilisées pour citer les sources dans les réponses.
-
-    Args:
-        fichier: Chemin absolu vers le fichier à charger. L'extension doit
-            être présente dans le dictionnaire LOADERS.
-
-    Returns:
-        Liste de Documents LangChain, un par page (PDF) ou par slide (PPTX),
-        chacun enrichi des métadonnées de source.
+    Sélectionne le loader selon l'extension (doit être dans LOADERS), puis
+    ajoute `fichier`, `type` et `page_number` à chaque Document.
     """
     loader = LOADERS[fichier.suffix.lower()]
     # _load_pptx est une fonction directe ; les loaders LangChain sont des classes
@@ -132,19 +103,10 @@ def load_file(fichier: Path) -> list:
 
 
 def load_new_documents(repertoire: Path, deja_indexes: set) -> list:
-    """Charge uniquement les fichiers du répertoire qui ne sont pas encore indexés.
+    """Charge les fichiers de `repertoire` absents de `deja_indexes`.
 
-    Parcourt récursivement `repertoire`, filtre les fichiers dont le nom est
-    absent de `deja_indexes`, et les charge via `load_file`. Les erreurs de
-    chargement sont loggées sans interrompre le traitement des autres fichiers.
-
-    Args:
-        repertoire: Répertoire racine à scanner récursivement.
-        deja_indexes: Ensemble des noms de fichiers déjà présents dans Chroma.
-
-    Returns:
-        Liste de Documents LangChain pour tous les nouveaux fichiers chargés
-        avec succès. Retourne une liste vide si aucun nouveau fichier n'est trouvé.
+    Parcourt récursivement le répertoire. Les erreurs sur un fichier sont
+    loggées sans interrompre le traitement des suivants.
     """
     fichiers_trouves = [f for f in repertoire.rglob("*") if f.suffix.lower() in LOADERS]
 

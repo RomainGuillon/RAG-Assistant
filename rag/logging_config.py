@@ -15,15 +15,9 @@ LOG_FILE = LOG_DIR / "rag.log"
 
 
 def setup_logging(level: int = logging.INFO) -> None:
-    """Configure le logging racine avec une sortie console et un fichier.
+    """Configure le logger racine : sortie console + fichier `rag.log`.
 
-    Remplace tous les handlers existants du logger racine par deux handlers :
-    un sur stdout (console) et un sur `rag.log` (fichier, encodage UTF-8).
-    Les deux utilisent le même format horodaté. Les bibliothèques tierces
-    verbeuses (httpx, urllib3) sont limitées au niveau WARNING.
-
-    Args:
-        level: Niveau de logging minimal pour l'application (défaut : INFO).
+    Les libs tierces verbeuses (httpx, urllib3) sont réduites à WARNING.
     """
     LOG_DIR.mkdir(exist_ok=True)
 

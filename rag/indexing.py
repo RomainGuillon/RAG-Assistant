@@ -15,22 +15,10 @@ logger = logging.getLogger(__name__)
 
 
 def split_documents(documents: list, chunk_size: int, chunk_overlap: int) -> list:
-    """Découpe une liste de documents en chunks de taille fixe avec chevauchement.
+    """Découpe les documents en chunks via RecursiveCharacterTextSplitter.
 
-    Utilise RecursiveCharacterTextSplitter qui tente de couper le texte aux
-    séparateurs naturels (paragraphe, phrase, mot) dans cet ordre de priorité,
-    afin de préserver la cohérence sémantique de chaque chunk.
-
-    Args:
-        documents: Liste de Documents LangChain à découper.
-        chunk_size: Taille maximale d'un chunk en nombre de caractères.
-        chunk_overlap: Nombre de caractères partagés entre deux chunks
-            consécutifs pour ne pas perdre le contexte aux jonctions.
-
-    Returns:
-        Liste de Documents LangChain résultant du découpage, avec la
-        métadonnée `start_index` indiquant la position du chunk dans le
-        document d'origine.
+    Coupe aux séparateurs naturels (paragraphe → phrase → mot) pour préserver
+    la cohérence sémantique. Ajoute la métadonnée `start_index` sur chaque chunk.
     """
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
@@ -49,16 +37,7 @@ def split_documents(documents: list, chunk_size: int, chunk_overlap: int) -> lis
 
 
 def index_documents(vectordb, chunks: list) -> None:
-    """Vectorise et persiste les chunks dans le vector store Chroma.
-
-    Calcule les embeddings de chaque chunk via le modèle configuré dans
-    `vectordb`, puis les insère dans la collection Chroma. L'opération
-    est persistée automatiquement sur disque.
-
-    Args:
-        vectordb: Instance Chroma connectée au vector store persisté.
-        chunks: Liste de Documents LangChain à vectoriser et indexer.
-    """
+    """Vectorise et insère les chunks dans Chroma."""
     logger.info("Indexation de %d nouveau(x) chunk(s)...", len(chunks))
     vectordb.add_documents(chunks)
     logger.info("Indexation terminée — total : %d chunk(s)", vectordb._collection.count())

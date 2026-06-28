@@ -39,18 +39,10 @@ PROMPT_TEMPLATE = ChatPromptTemplate.from_messages([
 
 
 def format_context(docs: list) -> str:
-    """Formate les chunks récupérés par le retriever en un bloc de contexte.
+    """Assemble les chunks en un bloc de contexte pour le prompt.
 
-    Chaque chunk est précédé d'une ligne de référence `[Source : fichier — p.X]`
-    afin que le LLM puisse citer ses sources dans la réponse.
-
-    Args:
-        docs: Liste de Documents LangChain retournés par le retriever,
-            chacun devant posséder les métadonnées `fichier` et `page_number`.
-
-    Returns:
-        Chaîne de caractères assemblant tous les chunks séparés par des
-        lignes vides, prête à être injectée dans le prompt système.
+    Chaque chunk est précédé de `[Source : fichier — p.X]` pour permettre
+    la citation des sources dans la réponse.
     """
     return "\n\n".join(
         f"[Source : {d.metadata.get('fichier', '?')} — p.{d.metadata.get('page_number', '?')}]\n"
@@ -60,28 +52,16 @@ def format_context(docs: list) -> str:
 
 
 class RagChain:
-    """Chaîne RAG complète : retrieval, prompt, LLM et mémoire conversationnelle.
-
-    Construit un pipeline LangChain qui, à chaque question :
-        1. Interroge le vector store via le retriever pour récupérer les chunks
-           les plus pertinents.
-        2. Injecte ces chunks, l'historique de conversation et la question dans
-           un prompt système strict.
-        3. Envoie le prompt au LLM OpenAI et retourne la réponse textuelle.
-        4. Met à jour l'historique pour les questions de suivi.
-    """
+    """Chaîne RAG complète : retrieval, prompt, LLM et mémoire conversationnelle."""
 
     def __init__(self, retriever, model: str, api_key: str, callback_handler=None, history_store=None):
-        """Initialise la chaîne RAG et assemble le pipeline LangChain.
-
+        """
         Args:
             retriever: VectorStoreRetriever configuré pour la recherche MMR.
-            model: Identifiant du modèle OpenAI à utiliser (ex. `gpt-4o-mini`).
+            model: Modèle OpenAI (ex. `gpt-4o-mini`).
             api_key: Clé d'authentification OpenAI.
-            callback_handler: Handler de callback optionnel (ex. Langfuse)
-                pour le tracing des appels. Passer None désactive le tracing.
-            history_store: Instance HistoryStore pour persister l'historique
-                entre les sessions. Passer None désactive la persistance.
+            callback_handler: Handler Langfuse pour le tracing. None = tracing désactivé.
+            history_store: HistoryStore pour persister l'historique. None = pas de persistance.
         """
         self.retriever = retriever
         self.llm = ChatOpenAI(model=model, api_key=api_key, temperature=0)
@@ -103,38 +83,16 @@ class RagChain:
         )
 
     def ask(self, question: str) -> str:
-        """Pose une question et retourne la réponse générée par le LLM.
-
-        Invoque le pipeline complet (retrieval → prompt → LLM), puis met à
-        jour l'historique interne avec la question et la réponse pour que les
-        échanges suivants puissent s'y référer.
-
-        Args:
-            question: Question en langage naturel posée par l'utilisateur.
-
-        Returns:
-            Réponse textuelle du LLM, basée uniquement sur les documents
-            indexés et l'historique de conversation.
-        """
+        """Invoque le pipeline (retrieval → prompt → LLM) et retourne la réponse."""
         callbacks = [self.callback_handler] if self.callback_handler else []
         reponse = self.chain.invoke(question, config={"callbacks": callbacks})
 
         self._save_to_history(question, reponse)
-        logger.debug("Question traitée")
+        logger.debug("Réponse générée — %d caractères", len(reponse))
         return reponse
 
     def stream(self, question: str):
-        """Stream la réponse token par token.
-
-        Génère les chunks de réponse au fur et à mesure qu'ils arrivent du LLM,
-        puis met à jour l'historique une fois la réponse complète.
-
-        Args:
-            question: Question en langage naturel posée par l'utilisateur.
-
-        Yields:
-            Chunks de texte (str) de la réponse du LLM.
-        """
+        """Stream la réponse token par token, puis met à jour l'historique."""
         callbacks = [self.callback_handler] if self.callback_handler else []
         reponse_complete = ""
 
@@ -143,7 +101,7 @@ class RagChain:
             yield chunk
 
         self._save_to_history(question, reponse_complete)
-        logger.debug("Question streamée")
+        logger.debug("Réponse streamée — %d caractères", len(reponse_complete))
 
     def _save_to_history(self, question: str, reponse: str) -> None:
         """Met à jour l'historique en mémoire et dans le store persisté."""
@@ -155,12 +113,7 @@ class RagChain:
             self.history_store.save("ai", reponse)
 
     def reset(self) -> None:
-        """Réinitialise l'historique de conversation.
-
-        Vide la liste des messages accumulés, permettant de repartir d'une
-        session vierge sans relancer l'application. La commande `reset` dans
-        la boucle interactive appelle cette méthode.
-        """
+        """Vide l'historique pour repartir sur une session vierge."""
         self.historique.clear()
         if self.history_store:
             self.history_store.new_session()

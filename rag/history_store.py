@@ -26,11 +26,7 @@ class HistoryStore:
     """
 
     def __init__(self, db_path: str):
-        """Ouvre (ou crée) la base SQLite et reprend la dernière session.
-
-        Args:
-            db_path: Chemin vers le fichier SQLite sur disque.
-        """
+        """Ouvre (ou crée) la base SQLite et reprend la dernière session."""
         self.conn = sqlite3.connect(db_path, check_same_thread=False)
         self._create_tables()
         self.current_session_id = self._get_or_create_session()
@@ -69,12 +65,7 @@ class HistoryStore:
         return cursor.lastrowid
 
     def load(self) -> list:
-        """Charge les messages de la session courante dans l'ordre chronologique.
-
-        Returns:
-            Liste de HumanMessage et AIMessage LangChain reconstituant
-            l'historique de la session en cours.
-        """
+        """Charge les messages de la session courante (ordre chronologique)."""
         cursor = self.conn.execute(
             "SELECT role, content FROM messages WHERE session_id = ? ORDER BY id",
             (self.current_session_id,),
@@ -93,12 +84,7 @@ class HistoryStore:
         return messages
 
     def save(self, role: str, content: str) -> None:
-        """Persiste un message dans la session courante.
-
-        Args:
-            role: Rôle de l'émetteur, `human` ou `ai`.
-            content: Contenu textuel du message.
-        """
+        """Persiste un message (`role` = `human` ou `ai`) dans la session courante."""
         self.conn.execute(
             "INSERT INTO messages (session_id, role, content) VALUES (?, ?, ?)",
             (self.current_session_id, role, content),
@@ -106,11 +92,7 @@ class HistoryStore:
         self.conn.commit()
 
     def new_session(self) -> None:
-        """Archive la session courante et en démarre une nouvelle.
-
-        Les messages des sessions précédentes sont conservés en base et
-        restent consultables directement dans le fichier SQLite.
-        """
+        """Archive la session courante et en démarre une nouvelle (sans rien supprimer)."""
         self.current_session_id = self._create_session()
         logger.info("Nouvelle session démarrée : #%d", self.current_session_id)
 

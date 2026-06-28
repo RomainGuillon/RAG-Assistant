@@ -190,20 +190,17 @@ with st.sidebar:
         st.subheader("Prompts analytiques")
 
         PROMPT_FRICTION = (
-            "Sur la base des documents indexés, identifie les points de tension, "
-            "de contradiction ou de divergence entre les textes. "
-            "Ne cherche pas la synthèse ou le consensus — cherche activement ce qui s'oppose, "
-            "ce qui est paradoxal, ce qui est affirmé dans un document et contredit ou nuancé dans un autre. "
-            "Structure ta réponse par tension identifiée, en citant les sources impliquées."
+            "Examine l'ensemble des sources que tu as reçues. "
+            "Identifie les points où deux sources ou plus sont en désaccord, se contredisent, "
+            "ou proposent des approches différentes sur un même sujet. "
+            "Pour chaque tension identifiée, cite les sources concernées et explique la nature du désaccord. "
+            "Ne produis pas de synthèse consensuelle."
         )
         PROMPT_AUDIT = (
-            "Fais un audit systémique de notre conversation : "
-            "quels aspects, thèmes ou arguments présents dans les documents indexés "
-            "n'ont pas été mobilisés dans nos échanges précédents ? "
-            "Pour chaque angle absent, explique pourquoi il n'a pas émergé — "
-            "est-ce parce que les questions posées ne l'appelaient pas, "
-            "parce que le retriever n'a pas récupéré ces passages, "
-            "ou parce que d'autres éléments ont pris le dessus ?"
+            "Liste les thèmes, arguments ou données présents dans les documents fournis "
+            "qui n'ont pas été mentionnés dans tes réponses précédentes. "
+            "Pour chacun, indique dans quel document il apparaît et propose une hypothèse "
+            "sur la raison pour laquelle il n'a pas été mobilisé."
         )
         if st.button("⚡ Tensions & divergences", use_container_width=True,
                      help="Force le modèle à chercher les contradictions entre documents"):
@@ -236,7 +233,7 @@ with st.sidebar:
 # Zone de chat
 # ---------------------------------------------------------------------------
 
-st.title("🔍 RAG Assistant")
+st.title("RAG Assistant")
 st.caption(f"Modele : {config.MODEL} · {nb_fichiers} fichier(s) indexe(s)")
 
 for msg in st.session_state.messages:
